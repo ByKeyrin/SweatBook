@@ -1,44 +1,74 @@
 import { useState } from 'react'
+
+import type { Session } from '../../types'
+
 import { Card } from '../../components/ui/Card'
-import { SectionPlaceholder } from '../../components/ui/SectionPlaceholder'
+import { useSessions } from '../../hooks/useSessions'
+import { SessionForm } from './SessionForm'
+import { SessionList } from './SessionList'
+
+/* ============================================================
+ * JournalScreen — page « Journal des séances » (features/journal/).
+ * Elle assemble SessionForm + SessionList et pilote l'affichage
+ * du formulaire (création ou modification).
+ * ============================================================ */
+
+/** Ce que le formulaire est en train de faire : créer ou modifier. */
+type EditorTarget = { mode: 'create' } | { mode: 'edit'; session: Session }
 
 /**
- * JournalScreen — page « Journal des séances » (features/journal/).
- *
- * Sprint 1 : seul le squelette de la page existe.
- * Le formulaire d'ajout arrivera au Sprint 2 (SessionForm + SessionCard).
+ * JournalScreen - Page du journal des séances
+ * @returns {JSX.Element} Composant JournalScreen
  */
 export function JournalScreen() {
-  // useState = petite mémoire du composant. Ici : le formulaire est-il ouvert ?
-  const [showHint, setShowHint] = useState(false)
+  const { sessions, addSession, updateSession, deleteSession } = useSessions()
 
+  // Le formulaire est masqué par défaut (editor = null).
+  const [editor, setEditor] = useState<EditorTarget | null>(null)
+
+  /** Enregistre la séance (création ou modification) puis ferme le formulaire. */
+  const handleSubmit = (data: Omit<Session, 'id'>): void => {
+    if (editor && editor.mode === 'edit') {
+      updateSession(editor.session.id, data)
+    } else {
+      addSession(data)
+    }
+    setEditor(null)
+  }
+
+  const pageTitle = (
+    <h2 className="text-xl font-semibold text-slate-800">
+      📓 Journal des séances
+    </h2>
+  )
+
+  // ---------- Formulaire (masqué par défaut) ----------
+  if (editor) {
+    return (
+      <div className="flex flex-col gap-4">
+        {pageTitle}
+        <Card title={editor.mode === 'edit' ? '✏️ Modifier la séance' : '➕ Nouvelle séance'}>
+          <SessionForm
+            // "key" force le formulaire à se réinitialiser quand la cible change.
+            key={editor.mode === 'edit' ? editor.session.id : 'create'}
+            initial={editor.mode === 'edit' ? editor.session : undefined}
+            onSubmit={handleSubmit}
+            onCancel={() => setEditor(null)}
+          />
+        </Card>
+      </div>
+    )
+  }
+
+  // ---------- Liste des séances ----------
   return (
     <div className="flex flex-col gap-4">
-      <Card title="📓 Journal des séances">
-        <p className="mb-4 text-sm leading-relaxed text-slate-600">
-          Ici, tu noteras chaque sortie : date, type, distance, durée, ressenti…
-          Le formulaire complet arrive au prochain sprint.
-        </p>
-
-        <button
-          type="button"
-          onClick={() => setShowHint(!showHint)}
-          className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 active:scale-95"
-        >
-          + Nouvelle séance
-        </button>
-
-        {showHint && (
-          <p className="mt-3 rounded-lg bg-blue-50 p-3 text-sm text-blue-800">
-            Le formulaire d'ajout sera implémenté au Sprint 2 — reste connecté ! 💪
-          </p>
-        )}
-      </Card>
-
-      <SectionPlaceholder
-        emoji="📋"
-        title="Liste des séances"
-        description="La liste de tes séances (de la plus récente à la plus ancienne) s'affichera ici dès le Sprint 2."
+      {pageTitle}
+      <SessionList
+        sessions={sessions}
+        onCreate={() => setEditor({ mode: 'create' })}
+        onEdit={(session) => setEditor({ mode: 'edit', session })}
+        onDelete={deleteSession}
       />
     </div>
   )

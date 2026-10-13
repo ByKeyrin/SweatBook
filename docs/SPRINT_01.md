@@ -157,10 +157,15 @@ Ils ont été retirés du projet (déplacés hors dépôt) pour garder une base 
 
 ## 📋 Ce qui reste à faire
 
-- [ ] **Formulaire de séance** (« + Nouvelle séance ») : champs date, type, distance,
-      durée, ressenti, notes — avec validation (distance > 0, date non future…) ;
-- [ ] **Liste des séances** dans le Journal (cartes `SessionCard`, tri plus récente d'abord) ;
-- [ ] **Couche API** (`src/services/api.ts`) pour parler au backend (fetch `/api/sessions`) ;
+> ✅ Mis à jour après le Sprint 2 — voir [SPRINT_02.md](./SPRINT_02.md).
+
+- [x] **Formulaire de séance** (« + Nouvelle séance ») : champs date, type, distance,
+      durée, ressenti, notes — avec validation (distance > 0, date non future…)
+      → fait au Sprint 2 (`SessionForm.tsx`) ;
+- [x] **Liste des séances** dans le Journal (cartes `SessionCard`, tri plus récente d'abord)
+      → fait au Sprint 2 (`SessionList.tsx` + `SessionCard.tsx`) ;
+- [ ] **Couche API** (`src/services/api.ts`) pour parler au backend (fetch `/api/sessions`)
+      — reporté au Sprint 3, persistance localStorage en attendant ;
 - [ ] **Graphiques de progression** (Recharts) reliés à `/api/stats` ;
 - [ ] **Planning hebdomadaire** relié à `/api/plan` ;
 - [ ] Aligner la structure des dossiers avec docs/TECHNICAL.md §3 (ou mettre à jour la doc) ;
@@ -171,13 +176,11 @@ Ils ont été retirés du projet (déplacés hors dépôt) pour garder une base 
 
 ## 🚀 Prochain sprint
 
-**Sprint 2 — Journal des séances (CRUD complet)** :
-
-1. Créer `src/services/api.ts` (appels `GET/POST/PUT/DELETE /api/sessions`) ;
-2. Créer `SessionForm.tsx` (formulaire + validation côté client) ;
-3. Créer `SessionCard.tsx` (affichage d'une séance, boutons Modifier / Supprimer) ;
-4. Brancher le tout sur le backend (à développer en parallèle dans `server/`) ;
-5. 🎯 Critère de réussite : les tests `tests/e2e/journal.spec.js` passent.
+**Sprint 2 — Journal des séances (CRUD complet)** : ✅ réalisé — voir
+[SPRINT_02.md](./SPRINT_02.md) et la documentation du module dans
+[JOURNAL.md](./JOURNAL.md). Le point 1 (couche API) est reporté au Sprint 3,
+le backend n'existant pas encore (persistance localStorage en attendant).
+Ensuite : **Sprint 3 — Backend + API REST**.
 
 ---
 

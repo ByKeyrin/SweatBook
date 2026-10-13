@@ -87,7 +87,7 @@ export default function App() {
 
       {/* ---------- Pied de page ---------- */}
       <footer className="mt-10 text-center text-xs text-slate-400">
-        SweatBook — Sprint 1 · Fait avec React + Vite + Tailwind 💪
+        SweatBook — Sprint 2 · Fait avec React + Vite + Tailwind 💪
       </footer>
     </div>
   )
