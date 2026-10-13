@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Base path pour GitHub Pages (projet servi sous https://keyrin.github.io/SweatBook/)
+  base: '/SweatBook/',
   plugins: [
     react(),
     // Plugin officiel Tailwind CSS v4 pour Vite (plus besoin de tailwind.config.js)

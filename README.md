@@ -7,6 +7,9 @@
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=nodedotjs&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-3-003b57?logo=sqlite&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
+![Deploy](https://github.com/ByKeyrin/SweatBook/actions/workflows/deploy.yml/badge.svg)
+
+> **🌐 Démo en ligne :** [https://keyrin.github.io/SweatBook/](https://keyrin.github.io/SweatBook/) — déployée automatiquement sur GitHub Pages à chaque push sur `main`.
 
 > **SweatBook** est une application web de gestion sportive dédiée au **running** 🏅.
 > Enregistrez vos séances, visualisez vos progrès et organisez votre semaine d'entraînement,
