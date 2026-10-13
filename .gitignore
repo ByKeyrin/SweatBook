@@ -1,0 +1,16 @@
+# Dépendances
+node_modules/
+
+# Base SQLite locale (données du développeur)
+server/data/
+
+# Rapports et artefacts de tests
+playwright-report/
+test-results/
+coverage/
+
+# Divers
+dist/
+.DS_Store
+*.log
+.env
