@@ -8,6 +8,10 @@ server/data/
 playwright-report/
 test-results/
 coverage/
+# Rapports JSON transitoires (artefacts de `scripts/generate-test-report.js`) ;
+# seul test-report.md est commité (rapport final lisible)
+test-report-api.json
+test-report-e2e.json
 
 # Divers
 dist/
