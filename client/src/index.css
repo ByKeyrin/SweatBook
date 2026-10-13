@@ -1,0 +1,15 @@
+/*
+ * Feuille de style principale.
+ * Tailwind CSS v4 : une seule ligne suffit — tous les utilitaires
+ * (bg-blue-500, flex, text-xl…) sont générés à la volée depuis le JSX.
+ */
+@import 'tailwindcss';
+
+/* Style de base appliqué à toute la page */
+body {
+  margin: 0;
+  background-color: #f8fafc; /* slate-50 */
+  color: #0f172a; /* slate-900 */
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
