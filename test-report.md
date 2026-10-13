@@ -8,8 +8,8 @@
 
 | | |
 |---|---|
-| Date | 2026-10-13T19:38:04.623Z |
-| Commit | `297f42fdb8cdbb1aa295affbf9450a9570bea3fd` |
+| Date | 2026-10-13T20:08:16.761Z |
+| Commit | `4555036228cf17a35aacc253c31a90b36613670c` |
 | Branche | `main` |
 
 ## 📈 Résumé
@@ -17,8 +17,8 @@
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
 | API (Vitest) | 42 | 0 | 33 | 9 |
-| E2E (Playwright) | 13 | 4 | 9 | 0 |
-| **Total** | **55** | **4** | **42** | **9** |
+| E2E (Playwright) | 13 | 9 | 4 | 0 |
+| **Total** | **55** | **9** | **37** | **9** |
 
 ## 🧪 Tests API (Vitest)
 
@@ -137,31 +137,21 @@
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 13 | 4 | 9 | 0 |
+| 13 | 9 | 4 | 0 |
 
 ### Détail par fichier de test
 
-**`journal.spec.js`** — 7 test(s) : ✅ 2 · ❌ 5 · ⏭️ 0
+**`journal.spec.js`** — 7 test(s) : ✅ 7 · ❌ 0 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
 | affiche le journal au chargement | ✅ Passé |
-| ajoute une séance depuis le formulaire | ❌ Échoué |
-| affiche la liste des séances (plus récente d'abord) | ❌ Échoué |
-| modifie une séance existante | ❌ Échoué |
-| supprime une séance après confirmation | ❌ Échoué |
-| refuse une distance invalide avec un message clair | ❌ Échoué |
+| ajoute une séance depuis le formulaire | ✅ Passé |
+| affiche la liste des séances (plus récente d'abord) | ✅ Passé |
+| modifie une séance existante | ✅ Passé |
+| supprime une séance après confirmation | ✅ Passé |
+| refuse une distance invalide avec un message clair | ✅ Passé |
 | navigue entre Journal, Graphiques et Planning | ✅ Passé |
-
-<details><summary>🚨 Erreurs</summary>
-
-- **ajoute une séance depuis le formulaire** : `[31mTest timeout of 30000ms exceeded.[39m`
-- **affiche la liste des séances (plus récente d'abord)** : `[31mTest timeout of 30000ms exceeded.[39m`
-- **modifie une séance existante** : `[31mTest timeout of 30000ms exceeded.[39m`
-- **supprime une séance après confirmation** : `[31mTest timeout of 30000ms exceeded.[39m`
-- **refuse une distance invalide avec un message clair** : `[31mTest timeout of 30000ms exceeded.[39m`
-
-</details>
 
 **`planning.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
 
@@ -195,4 +185,4 @@
 
 ## 🏁 Statut global
 
-❌ **ÉCHEC** — 42 test(s) en échec sur 55 exécuté(s).
+❌ **ÉCHEC** — 37 test(s) en échec sur 55 exécuté(s).
