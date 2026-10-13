@@ -20,12 +20,12 @@
 
 | Onglet | Contenu | Doc complète |
 |---|---|---|
-| [📋 Fonctionnalités](#-fonctionnalités) | Ce que fait l'app | [docs/FUNCTIONAL.md](docs/FUNCTIONAL.md) |
-| [🛠️ Stack technique](#%EF%B8%8F-stack-technique) | Technologies utilisées | [docs/TECHNICAL.md](docs/TECHNICAL.md) |
-| [🚀 Installation](#-installation) | Démarrage rapide | [docs/TECHNICAL.md#7-guide-de-développement](docs/TECHNICAL.md) |
-| [📚 Documentation](#-documentation) | Les deux docs complètes | [docs/](docs/) |
-| [🏗️ Architecture](#%EF%B8%8F-architecture) | Schéma simplifié | [docs/TECHNICAL.md#2-architecture-de-lapplication](docs/TECHNICAL.md) |
-| [📖 Guide de démarrage](#-guide-de-démarrage) | Premiers pas | [docs/FUNCTIONAL.md#3-parcours-utilisateur](docs/FUNCTIONAL.md) |
+| [📋 Fonctionnalités](#fonctionnalites) | Ce que fait l'app | [docs/FUNCTIONAL.md](docs/FUNCTIONAL.md) |
+| [🛠️ Stack technique](#stack-technique) | Technologies utilisées | [docs/TECHNICAL.md](docs/TECHNICAL.md) |
+| [🚀 Installation](#installation) | Démarrage rapide | [docs/TECHNICAL.md#7-guide-de-développement](docs/TECHNICAL.md) |
+| [📚 Documentation](#documentation) | Les deux docs complètes | [docs/](docs/) |
+| [🏗️ Architecture](#architecture) | Schéma simplifié | [docs/TECHNICAL.md#2-architecture-de-lapplication](docs/TECHNICAL.md) |
+| [📖 Guide de démarrage](#guide-demarrage) | Premiers pas | [docs/FUNCTIONAL.md#3-parcours-utilisateur](docs/FUNCTIONAL.md) |
 
 ---
 
@@ -139,7 +139,7 @@ Le projet dispose de deux documents complets dans [`docs/`](docs/) :
 | 📖 [**TECHNICAL.md**](docs/TECHNICAL.md) | Architecture client/serveur, schéma de la base de données (tables `sessions`, `plan_entries`, vue `weekly_stats`), API REST, composants React, types TypeScript, guide de développement et conventions Git. | Développeurs |
 | 🎯 [**FUNCTIONAL.md**](docs/FUNCTIONAL.md) | Vision du produit, utilisateur cible (persona), parcours utilisateur, fonctionnalités détaillées, règles de gestion (allure, VMA, volume…), validations et gestion des erreurs. | Tous / métier |
 
-🔗 **Accès direct →** [docs/TECHNICAL.md](docs/TECHNICAL.md) · [docs/FUNCTIONAL.md](docs/FUNCTIONAL.md)
+🔗 **Voir plus →** [docs/TECHNICAL.md](docs/TECHNICAL.md) · [docs/FUNCTIONAL.md](docs/FUNCTIONAL.md)
 
 </details>
 
