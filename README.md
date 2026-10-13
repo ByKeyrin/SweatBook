@@ -154,6 +154,6 @@ Les contributions sont les bienvenues ! Pour proposer une amélioration :
 
 ## 📄 Licence
 
-Distribué sous licence **MIT**. Voir [LICENSE](LICENSE) pour plus d'informations.
+Distribué sous licence **MIT**.
 
 Fait avec ❤️ et beaucoup de kilomètres 🏃‍♂️
