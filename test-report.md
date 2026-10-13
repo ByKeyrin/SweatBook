@@ -8,124 +8,191 @@
 
 | | |
 |---|---|
-| Date | 2026-10-13T15:14:19.192Z |
-| Commit | `local` |
-| Branche | `locale` |
+| Date | 2026-10-13T15:24:18.223Z |
+| Commit | `21a83e8762643d2569233c033976e3442eea4286` |
+| Branche | `main` |
 
 ## 📈 Résumé
 
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
-| API (Vitest) | 42 | 42 | 0 | 0 |
-| E2E (Playwright) | 13 | 13 | 0 | 0 |
-| **Total** | **55** | **55** | **0** | **0** |
+| API (Vitest) | 42 | 0 | 33 | 9 |
+| E2E (Playwright) | 13 | 4 | 9 | 0 |
+| **Total** | **55** | **4** | **42** | **9** |
 
 ## 🧪 Tests API (Vitest)
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 42 | 42 | 0 | 0 |
+| 42 | 0 | 33 | 9 |
 
 ### Détail par fichier de test
 
-**`tests/api/plan.test.js`** — 14 test(s) : ✅ 14 · ❌ 0 · ⏭️ 0
+**`tests/api/plan.test.js`** — 14 test(s) : ✅ 0 · ❌ 14 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
-| API plan — lecture GET /api/plan/:weekStart renvoie les entrées de la semaine | ✅ Passé |
-| API plan — lecture GET /api/plan/:weekStart ne renvoie que cette semaine | ✅ Passé |
-| API plan — création POST /api/plan crée une entrée valide (201) | ✅ Passé |
-| API plan — création POST /api/plan accepte une journée « Repos » sans distance | ✅ Passé |
-| API plan — création POST /api/plan accepte une semaine future | ✅ Passé |
-| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un day_of_week hors bornes (0-6) | ✅ Passé |
-| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un type planifié inconnu | ✅ Passé |
-| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une distance prévue <= 0 | ✅ Passé |
-| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une week_start manquante | ✅ Passé |
-| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse deux entrées le même jour (une seule entrée par jour) | ✅ Passé |
-| API plan — modification et suppression PUT /api/plan/:id modifie une entrée existante | ✅ Passé |
-| API plan — modification et suppression PUT /api/plan/:id renvoie 404 si l'entrée n'existe pas | ✅ Passé |
-| API plan — modification et suppression DELETE /api/plan/:id supprime l'entrée (204) | ✅ Passé |
-| API plan — modification et suppression DELETE /api/plan/:id renvoie 404 si l'entrée n'existe pas | ✅ Passé |
+| API plan — lecture GET /api/plan/:weekStart renvoie les entrées de la semaine | ❌ Échoué |
+| API plan — lecture GET /api/plan/:weekStart ne renvoie que cette semaine | ❌ Échoué |
+| API plan — création POST /api/plan crée une entrée valide (201) | ❌ Échoué |
+| API plan — création POST /api/plan accepte une journée « Repos » sans distance | ❌ Échoué |
+| API plan — création POST /api/plan accepte une semaine future | ❌ Échoué |
+| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un day_of_week hors bornes (0-6) | ❌ Échoué |
+| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un type planifié inconnu | ❌ Échoué |
+| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une distance prévue <= 0 | ❌ Échoué |
+| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une week_start manquante | ❌ Échoué |
+| API plan — validations (docs/FUNCTIONAL.md §5.3) refuse deux entrées le même jour (une seule entrée par jour) | ❌ Échoué |
+| API plan — modification et suppression PUT /api/plan/:id modifie une entrée existante | ❌ Échoué |
+| API plan — modification et suppression PUT /api/plan/:id renvoie 404 si l'entrée n'existe pas | ❌ Échoué |
+| API plan — modification et suppression DELETE /api/plan/:id supprime l'entrée (204) | ❌ Échoué |
+| API plan — modification et suppression DELETE /api/plan/:id renvoie 404 si l'entrée n'existe pas | ❌ Échoué |
 
-**`tests/api/running.test.js`** — 4 test(s) : ✅ 4 · ❌ 0 · ⏭️ 0
+<details><summary>🚨 Erreurs</summary>
 
-| Test | Statut |
-|---|---|
-| API running — statistiques coureur (GET /api/running) renvoie 200 et les statistiques attendues | ✅ Passé |
-| API running — statistiques coureur (GET /api/running) compte les kilomètres, le temps et les séances | ✅ Passé |
-| API running — statistiques coureur (GET /api/running) calcule l'allure globale pondérée (durée totale ÷ distance totale) | ✅ Passé |
-| API running — statistiques coureur (GET /api/running) estime la VMA à partir du fractionné (vitesse max × 1,05) | ✅ Passé |
+- **API plan — lecture GET /api/plan/:weekStart renvoie les entrées de la semaine** : `TypeError: fetch failed`
+- **API plan — lecture GET /api/plan/:weekStart ne renvoie que cette semaine** : `TypeError: fetch failed`
+- **API plan — création POST /api/plan crée une entrée valide (201)** : `TypeError: fetch failed`
+- **API plan — création POST /api/plan accepte une journée « Repos » sans distance** : `TypeError: fetch failed`
+- **API plan — création POST /api/plan accepte une semaine future** : `TypeError: fetch failed`
+- **API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un day_of_week hors bornes (0-6)** : `TypeError: fetch failed`
+- **API plan — validations (docs/FUNCTIONAL.md §5.3) refuse un type planifié inconnu** : `TypeError: fetch failed`
+- **API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une distance prévue <= 0** : `TypeError: fetch failed`
+- **API plan — validations (docs/FUNCTIONAL.md §5.3) refuse une week_start manquante** : `TypeError: fetch failed`
+- **API plan — validations (docs/FUNCTIONAL.md §5.3) refuse deux entrées le même jour (une seule entrée par jour)** : `TypeError: fetch failed`
+- **API plan — modification et suppression PUT /api/plan/:id modifie une entrée existante** : `TypeError: fetch failed`
+- **API plan — modification et suppression PUT /api/plan/:id renvoie 404 si l'entrée n'existe pas** : `TypeError: fetch failed`
+- **API plan — modification et suppression DELETE /api/plan/:id supprime l'entrée (204)** : `TypeError: fetch failed`
+- **API plan — modification et suppression DELETE /api/plan/:id renvoie 404 si l'entrée n'existe pas** : `TypeError: fetch failed`
 
-**`tests/api/sessions.test.js`** — 19 test(s) : ✅ 19 · ❌ 0 · ⏭️ 0
+</details>
 
-| Test | Statut |
-|---|---|
-| API sessions — lecture GET /api/sessions renvoie 200 et une liste de séances | ✅ Passé |
-| API sessions — lecture GET /api/sessions/:id renvoie une séance existante | ✅ Passé |
-| API sessions — lecture GET /api/sessions/:id renvoie 404 si la séance n'existe pas | ✅ Passé |
-| API sessions — création POST /api/sessions crée une séance valide (201) | ✅ Passé |
-| API sessions — création POST /api/sessions accepte les champs optionnels vides | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date manquante | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date dans le futur | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un type de séance inconnu | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance <= 0 | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance > 500 km | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée <= 0 | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée > 1440 min (24 h) | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une fréquence cardiaque hors bornes (30-230 bpm) | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un ressenti hors bornes (1-5) | ✅ Passé |
-| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse des notes de plus de 500 caractères | ✅ Passé |
-| API sessions — modification et suppression PUT /api/sessions/:id modifie une séance existante | ✅ Passé |
-| API sessions — modification et suppression PUT /api/sessions/:id renvoie 404 si la séance n'existe pas | ✅ Passé |
-| API sessions — modification et suppression DELETE /api/sessions/:id supprime la séance (204) | ✅ Passé |
-| API sessions — modification et suppression DELETE /api/sessions/:id renvoie 404 si la séance n'existe pas | ✅ Passé |
-
-**`tests/api/stats.test.js`** — 5 test(s) : ✅ 5 · ❌ 0 · ⏭️ 0
+**`tests/api/running.test.js`** — 4 test(s) : ✅ 0 · ❌ 0 · ⏭️ 4
 
 | Test | Statut |
 |---|---|
-| API stats — série hebdomadaire (GET /api/stats/weekly) renvoie 200 et une liste de points hebdomadaires | ✅ Passé |
-| API stats — série hebdomadaire (GET /api/stats/weekly) regroupe les séances par semaine (lundi → dimanche) | ✅ Passé |
-| API stats — série hebdomadaire (GET /api/stats/weekly) trie les semaines dans l'ordre chronologique | ✅ Passé |
-| API stats — résumé global (GET /api/stats/summary) renvoie 200 et un objet de résumé | ✅ Passé |
-| API — gestion des erreurs un endpoint inconnu renvoie 404 avec { error } | ✅ Passé |
+| API running — statistiques coureur (GET /api/running) renvoie 200 et les statistiques attendues | ⏭️ Ignoré |
+| API running — statistiques coureur (GET /api/running) compte les kilomètres, le temps et les séances | ⏭️ Ignoré |
+| API running — statistiques coureur (GET /api/running) calcule l'allure globale pondérée (durée totale ÷ distance totale) | ⏭️ Ignoré |
+| API running — statistiques coureur (GET /api/running) estime la VMA à partir du fractionné (vitesse max × 1,05) | ⏭️ Ignoré |
+
+**`tests/api/sessions.test.js`** — 19 test(s) : ✅ 0 · ❌ 19 · ⏭️ 0
+
+| Test | Statut |
+|---|---|
+| API sessions — lecture GET /api/sessions renvoie 200 et une liste de séances | ❌ Échoué |
+| API sessions — lecture GET /api/sessions/:id renvoie une séance existante | ❌ Échoué |
+| API sessions — lecture GET /api/sessions/:id renvoie 404 si la séance n'existe pas | ❌ Échoué |
+| API sessions — création POST /api/sessions crée une séance valide (201) | ❌ Échoué |
+| API sessions — création POST /api/sessions accepte les champs optionnels vides | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date manquante | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date dans le futur | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un type de séance inconnu | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance <= 0 | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance > 500 km | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée <= 0 | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée > 1440 min (24 h) | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une fréquence cardiaque hors bornes (30-230 bpm) | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un ressenti hors bornes (1-5) | ❌ Échoué |
+| API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse des notes de plus de 500 caractères | ❌ Échoué |
+| API sessions — modification et suppression PUT /api/sessions/:id modifie une séance existante | ❌ Échoué |
+| API sessions — modification et suppression PUT /api/sessions/:id renvoie 404 si la séance n'existe pas | ❌ Échoué |
+| API sessions — modification et suppression DELETE /api/sessions/:id supprime la séance (204) | ❌ Échoué |
+| API sessions — modification et suppression DELETE /api/sessions/:id renvoie 404 si la séance n'existe pas | ❌ Échoué |
+
+<details><summary>🚨 Erreurs</summary>
+
+- **API sessions — lecture GET /api/sessions renvoie 200 et une liste de séances** : `TypeError: fetch failed`
+- **API sessions — lecture GET /api/sessions/:id renvoie une séance existante** : `TypeError: fetch failed`
+- **API sessions — lecture GET /api/sessions/:id renvoie 404 si la séance n'existe pas** : `TypeError: fetch failed`
+- **API sessions — création POST /api/sessions crée une séance valide (201)** : `TypeError: fetch failed`
+- **API sessions — création POST /api/sessions accepte les champs optionnels vides** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date manquante** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une date dans le futur** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un type de séance inconnu** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance <= 0** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une distance > 500 km** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée <= 0** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une durée > 1440 min (24 h)** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse une fréquence cardiaque hors bornes (30-230 bpm)** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse un ressenti hors bornes (1-5)** : `TypeError: fetch failed`
+- **API sessions — validations (docs/FUNCTIONAL.md §5.2) refuse des notes de plus de 500 caractères** : `TypeError: fetch failed`
+- **API sessions — modification et suppression PUT /api/sessions/:id modifie une séance existante** : `TypeError: fetch failed`
+- **API sessions — modification et suppression PUT /api/sessions/:id renvoie 404 si la séance n'existe pas** : `TypeError: fetch failed`
+- **API sessions — modification et suppression DELETE /api/sessions/:id supprime la séance (204)** : `TypeError: fetch failed`
+- **API sessions — modification et suppression DELETE /api/sessions/:id renvoie 404 si la séance n'existe pas** : `TypeError: fetch failed`
+
+</details>
+
+**`tests/api/stats.test.js`** — 5 test(s) : ✅ 0 · ❌ 0 · ⏭️ 5
+
+| Test | Statut |
+|---|---|
+| API stats — série hebdomadaire (GET /api/stats/weekly) renvoie 200 et une liste de points hebdomadaires | ⏭️ Ignoré |
+| API stats — série hebdomadaire (GET /api/stats/weekly) regroupe les séances par semaine (lundi → dimanche) | ⏭️ Ignoré |
+| API stats — série hebdomadaire (GET /api/stats/weekly) trie les semaines dans l'ordre chronologique | ⏭️ Ignoré |
+| API stats — résumé global (GET /api/stats/summary) renvoie 200 et un objet de résumé | ⏭️ Ignoré |
+| API — gestion des erreurs un endpoint inconnu renvoie 404 avec { error } | ⏭️ Ignoré |
 
 ## 🌐 Tests E2E (Playwright)
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 13 | 13 | 0 | 0 |
+| 13 | 4 | 9 | 0 |
 
 ### Détail par fichier de test
 
-**`journal.spec.js`** — 7 test(s) : ✅ 7 · ❌ 0 · ⏭️ 0
+**`journal.spec.js`** — 7 test(s) : ✅ 2 · ❌ 5 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
 | affiche le journal au chargement | ✅ Passé |
-| ajoute une séance depuis le formulaire | ✅ Passé |
-| affiche la liste des séances (plus récente d'abord) | ✅ Passé |
-| modifie une séance existante | ✅ Passé |
-| supprime une séance après confirmation | ✅ Passé |
-| refuse une distance invalide avec un message clair | ✅ Passé |
+| ajoute une séance depuis le formulaire | ❌ Échoué |
+| affiche la liste des séances (plus récente d'abord) | ❌ Échoué |
+| modifie une séance existante | ❌ Échoué |
+| supprime une séance après confirmation | ❌ Échoué |
+| refuse une distance invalide avec un message clair | ❌ Échoué |
 | navigue entre Journal, Graphiques et Planning | ✅ Passé |
 
-**`planning.spec.js`** — 3 test(s) : ✅ 3 · ❌ 0 · ⏭️ 0
+<details><summary>🚨 Erreurs</summary>
+
+- **ajoute une séance depuis le formulaire** : `[31mTest timeout of 30000ms exceeded.[39m`
+- **affiche la liste des séances (plus récente d'abord)** : `[31mTest timeout of 30000ms exceeded.[39m`
+- **modifie une séance existante** : `[31mTest timeout of 30000ms exceeded.[39m`
+- **supprime une séance après confirmation** : `[31mTest timeout of 30000ms exceeded.[39m`
+- **refuse une distance invalide avec un message clair** : `[31mTest timeout of 30000ms exceeded.[39m`
+
+</details>
+
+**`planning.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
 | affiche la grille des 7 jours (lundi → dimanche) | ✅ Passé |
-| change de semaine avec les boutons précédent/suivant | ✅ Passé |
-| planifie une sortie facile le lundi | ✅ Passé |
+| change de semaine avec les boutons précédent/suivant | ❌ Échoué |
+| planifie une sortie facile le lundi | ❌ Échoué |
 
-**`progression.spec.js`** — 3 test(s) : ✅ 3 · ❌ 0 · ⏭️ 0
+<details><summary>🚨 Erreurs</summary>
+
+- **change de semaine avec les boutons précédent/suivant** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
+- **planifie une sortie facile le lundi** : `[31mTest timeout of 30000ms exceeded.[39m`
+
+</details>
+
+**`progression.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
 | affiche les trois graphiques de progression | ✅ Passé |
-| dessine les graphiques (balises SVG présentes) | ✅ Passé |
-| change la période affichée (3 mois) | ✅ Passé |
+| dessine les graphiques (balises SVG présentes) | ❌ Échoué |
+| change la période affichée (3 mois) | ❌ Échoué |
+
+<details><summary>🚨 Erreurs</summary>
+
+- **dessine les graphiques (balises SVG présentes)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
+- **change la période affichée (3 mois)** : `[31mTest timeout of 30000ms exceeded.[39m`
+
+</details>
 
 ## 🏁 Statut global
 
-✅ **SUCCÈS** — les 55 test(s) exécuté(s) passent tous.
+❌ **ÉCHEC** — 42 test(s) en échec sur 55 exécuté(s).
