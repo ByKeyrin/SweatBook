@@ -12,6 +12,7 @@
 3. [Parcours utilisateur](#3-parcours-utilisateur)
 4. [Fonctionnalités détaillées](#4-fonctionnalités-détaillées)
 5. [Règles métier](#5-règles-métier)
+6. [Scénarios de test](#6-scénarios-de-test)
 
 ---
 
@@ -217,6 +218,65 @@ _(Estimation indicative, à afficher avec un avertissement « valeur approximati
 - Toute action impossible affiche un **message clair en français**, sans jargon technique.
 - Une suppression demande **toujours une confirmation** (« Supprimer cette séance ? Cette action est irréversible. »).
 - Si l'API est injoignable : « Impossible de contacter le serveur. Vérifiez qu'il est lancé, puis réessayez. »
+
+---
+
+## 6. Scénarios de test
+
+> 🧪 **Section anticipée** : elle décrit les scénarios de test **prévus** pour SweatBook
+> (voir la [stratégie technique](TECHNICAL.md#8-stratégie-de-tests) : Playwright pour les
+> parcours E2E, Vitest pour l'API). Les tests ne sont pas encore créés — cette section
+> sert de cahier de recette avant leur implémentation.
+
+### 6.1 Principaux parcours à tester (E2E)
+
+| # | Parcours | Étapes clés | Résultat attendu |
+|---|---|---|---|
+| 1 | **« Je note ma sortie du jour »** | Ouvrir le Journal → « + Nouvelle séance » → remplir date, type, distance, durée → Enregistrer | La séance apparaît dans le journal, les graphiques/stats se mettent à jour |
+| 2 | **« Je prépare ma semaine »** | Ouvrir le Planning → choisir la semaine → planifier un type de séance ou « Repos » pour un jour | La case affiche le statut 🟡 « À faire » / ⚪ « Repos » |
+| 3 | **« Je vérifie mes progrès »** | Ouvrir les Graphiques → consulter volume, allure, régularité | Les courbes reflètent les séances enregistrées |
+| 4 | **Modifier une séance** | Éditer une séance existante (ex. corriger la distance) | Les calculs (allure, volume) sont recalculés partout |
+| 5 | **Supprimer une séance** | Supprimer une séance → confirmer la dialog | La séance disparaît ; l'entrée de planning liée repasse 🟡 « À faire » (règle 5.3.4) |
+| 6 | **Lier une séance au planning** | Enregistrer une séance correspondant à une entrée prévue (même jour + même type) | L'entrée passe 🟢 « Fait » |
+
+### 6.2 Validations métier à couvrir
+
+**Formulaires (cf. règle 5.2)** — chaque règle doit être vérifiée côté UI *et* API :
+
+- Date obligatoire, **pas de date future** ;
+- Type dans la liste autorisée (`easy`, `long`, `interval`, `tempo`, `recovery`) ;
+- Distance > 0, **max 500 km** ;
+- Durée > 0, **max 1440 min (24 h)** ;
+- FC moyenne facultative : entier **30–230 bpm** ;
+- Ressenti facultatif : entier **1–5** ;
+- Notes facultatives : **500 caractères max**.
+
+**Calculs (cf. règle 5.1)** :
+
+- Allure = durée ÷ distance, affichée en `M:SS /km` ;
+- Allure globale **pondérée par la distance** (jamais la moyenne des allures) ;
+- Volume hebdomadaire = somme des distances de la semaine **lundi → dimanche** ;
+- VMA estimée ≈ vitesse max sur fractionné × 1,05 (avec mention « valeur approximative »).
+
+**Planning (cf. règle 5.3)** :
+
+- Une seule entrée par jour (« Repos » exclut une séance) ;
+- Semaine identifiée par sa date de lundi (`week_start`) ;
+- Suppression d'une séance → dé-liaison mais conservation de l'entrée de planning ;
+- Planification possible sur une semaine future **ou** passée.
+
+### 6.3 Cas d'erreur à anticiper
+
+| Cas d'erreur | Comportement attendu |
+|---|---|
+| Formulaire soumis avec des champs obligatoires manquants | Message d'erreur clair en français sous le champ concerné, aucune requête envoyée |
+| Données invalides envoyées à l'API (distance ≤ 0, date future…) | Réponse `400` avec `{ "error": "…" }`, affichage du message côté UI |
+| Séance/entrée de planning inexistante (id inconnu) | Réponse `404`, message « introuvable » sans crash |
+| Suppression sans confirmation | La suppression n'a pas lieu (dialog de confirmation obligatoire) |
+| API injoignable / serveur arrêté | « Impossible de contacter le serveur. Vérifiez qu'il est lancé, puis réessayez. » |
+| Double soumission rapide d'un formulaire | Une seule séance créée (pas de doublon) |
+| Séance supprimée alors qu'elle était liée au planning | L'entrée reste, repasse 🟡 « À faire » (jamais de suppression en cascade) |
+| Note > 500 caractères | Message « Commentaire trop long (500 caractères max) » |
 
 ---
 

@@ -64,6 +64,8 @@
 | **Styles** | [Tailwind CSS](https://tailwindcss.com/) | Design utilitaire, responsive |
 | **Backend** | [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/) | API REST |
 | **Base de données** | [SQLite](https://www.sqlite.org/) (via `better-sqlite3`) | Stockage local, sans serveur de BDD |
+| **Tests E2E** | [Playwright](https://playwright.dev/) | Tests bout en bout dans un vrai navigateur |
+| **Tests API** | [Vitest](https://vitest.dev/) | Tests de l'API REST |
 
 🔗 **Voir plus →** [Documentation technique (docs/TECHNICAL.md)](docs/TECHNICAL.md) — composants React, types TypeScript, conventions Git.
 

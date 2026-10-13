@@ -4,7 +4,7 @@ node_modules/
 # Base SQLite locale (données du développeur)
 server/data/
 
-# Rapports et artefacts de tests
+# Tests
 playwright-report/
 test-results/
 coverage/

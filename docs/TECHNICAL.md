@@ -15,6 +15,7 @@
 5. [API REST](#5-api-rest)
 6. [Composants React](#6-composants-react)
 7. [Guide de développement](#7-guide-de-développement)
+8. [Stratégie de tests](#8-stratégie-de-tests)
 
 ---
 
@@ -357,6 +358,108 @@ On suit les [Conventional Commits](https://www.conventionalcommits.org/) (en fra
 | `fetch failed` vers `/api` | Mauvais port / proxy | Vérifier `vite.config.ts` (proxy `/api` → `:3001`) |
 | `no such column` au démarrage | Le schéma a changé | Supprimer `server/data/sweatbook.db` et redémarrer (⚠️ supprime les données) |
 | `port 5173 already in use` | Un ancien Vite tourne encore | Tuer le processus ou changer de port (`npm run dev -- --port 5174`) |
+
+---
+
+## 8. Stratégie de tests
+
+> 🧪 **Section anticipée** : cette section décrit la stratégie de tests **prévue** pour
+> SweatBook. Les fichiers de test ne sont pas encore créés — cette documentation pose
+> le cadre *avant* leur implémentation, pour que l'architecture soit déjà adaptée.
+
+### 8.1 Types de tests prévus
+
+| Type de test | Outil | Objectif | Périmètre |
+|---|---|---|---|
+| **Tests E2E** (bout en bout) | [Playwright](https://playwright.dev/) | Vérifier les parcours utilisateur dans un **vrai navigateur** (clics, formulaires, affichage) | Journal, Planning, Graphiques |
+| **Tests API** | [Vitest](https://vitest.dev/) | Vérifier le **contrat REST** : codes HTTP, corps JSON, validations | `/api/sessions`, `/api/plan`, `/api/stats` |
+
+**Pourquoi ces deux niveaux ?**
+- Les tests **E2E** garantissent que l'utilisateur peut réellement faire ses parcours
+  (formulaire → enregistrement → affichage dans le journal, mise à jour des graphiques…).
+- Les tests **API** garantissent que le backend respecte la spécification de la [section 5](#5-api-rest)
+  (codes `200` / `201` / `204` / `400` / `404`, messages d'erreur `{ "error": "…" }`).
+
+**Framework de tests API : Vitest** (et non Jest).
+- Même écosystème que Vite : configuration minimale, native ESM/TypeScript.
+- Rapide, léger, watch mode intégré — idéal pour ce projet.
+- Jest resterait une alternative possible, mais sa configuration est plus lourde ici.
+
+### 8.2 Structure des dossiers `tests/` (anticipée)
+
+```
+SweatBook/
+├── tests/
+│   ├── e2e/                      # Tests E2E Playwright (*.spec.js)
+│   │   ├── journal.spec.js       # Parcours « Je note ma sortie du jour »
+│   │   ├── planning.spec.js      # Parcours « Je prépare ma semaine »
+│   │   └── progression.spec.js   # Parcours « Je vérifie mes progrès »
+│   ├── api/                      # Tests API Vitest (*.test.js)
+│   │   ├── sessions.test.js      # CRUD /api/sessions
+│   │   ├── plan.test.js          # CRUD /api/plan
+│   │   └── stats.test.js         # Agrégats /api/stats
+│   └── helpers/
+│       └── test-utils.js         # Utilitaires partagés (fixtures, setup/teardown)
+├── playwright.config.js          # Configuration Playwright (racine du repo)
+└── ...
+```
+
+**Artefacts produits par les tests** (git-ignorés, jamais commités) :
+- `test-results/` — traces, captures d'écran et vidéos des tests E2E ;
+- `playwright-report/` — rapport HTML navigable généré par Playwright ;
+- `coverage/` — rapport de couverture de code (tests API Vitest).
+
+### 8.3 Configuration Playwright (prévue)
+
+Un fichier `playwright.config.js` à la **racine** du dépôt :
+
+```js
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/e2e',                  // dossier des tests E2E
+  timeout: 30_000,                         // un test > 30 s est un échec
+  fullyParallel: true,                     // exécution parallèle des specs
+  retries: process.env.CI ? 2 : 0,         // 2 tentatives en CI uniquement
+  reporter: ['html', 'list'],              // rapport navigable + sortie console
+  use: {
+    baseURL: 'http://localhost:5173',
+    trace: 'on-first-retry',               // trace navigable en cas d'échec
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+  ],
+  webServer: {                             // démarre l'app avant les tests
+    command: 'npm run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
+
+Points clés :
+- **`webServer`** : Playwright démarre automatiquement l'application (API `:3001` +
+  client `:5173`) avant la série de tests, et l'arrête à la fin.
+- **`trace: 'on-first-retry'`** : en cas d'échec, une trace détaillée est produite
+  dans `playwright-report/` (rejouable pas à pas).
+- Les tests E2E passent par le **proxy Vite** (`/api` → `:3001`) : le flux complet
+  navigateur → API → SQLite est donc couvert.
+
+### 8.4 Scripts npm prévus
+
+À déclarer dans le `package.json` **racine** :
+
+| Script | Commande | Rôle |
+|---|---|---|
+| `npm test` | `vitest` | Lance les tests API (Vitest) |
+| `npm run test:e2e` | `playwright test` | Lance les tests E2E (Playwright) |
+| `npm run test:all` | `npm test -- --run && npm run test:e2e` | Lance la suite complète (API puis E2E) |
+
+### 8.5 Évolutions envisagées
+
+- Compléter `tests/api/` (planning, statistiques) et `tests/e2e/` (cas d'erreur).
+- Couverture de code côté API (Vitest `--coverage` → `coverage/`).
+- Intégration continue (GitHub Actions) : `npm run test:all` à chaque pull request.
 
 ---
 
