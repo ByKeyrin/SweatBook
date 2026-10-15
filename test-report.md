@@ -8,8 +8,8 @@
 
 | | |
 |---|---|
-| Date | 2026-10-15T13:36:03.110Z |
-| Commit | `4bea3c0f5fd9304f2105b17e26314d7a6abe3484` |
+| Date | 2026-10-15T14:50:39.966Z |
+| Commit | `7b6d57dbe56df9ffe6d0e1b826e756028ec42b2e` |
 | Branche | `main` |
 
 ## 📈 Résumé
@@ -17,8 +17,8 @@
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
 | API (Vitest) | 42 | 0 | 0 | 42 |
-| E2E (Playwright) | 13 | 8 | 5 | 0 |
-| **Total** | **55** | **8** | **5** | **42** |
+| E2E (Playwright) | 13 | 7 | 6 | 0 |
+| **Total** | **55** | **7** | **6** | **42** |
 
 ## 🧪 Tests API (Vitest)
 
@@ -96,7 +96,7 @@
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 13 | 8 | 5 | 0 |
+| 13 | 7 | 6 | 0 |
 
 ### Détail par fichier de test
 
@@ -112,16 +112,17 @@
 | refuse une distance invalide avec un message clair | ✅ Passé |
 | navigue entre Journal, Graphiques et Planning | ✅ Passé |
 
-**`planning.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
+**`planning.spec.js`** — 3 test(s) : ✅ 0 · ❌ 3 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
-| affiche la grille des 7 jours (lundi → dimanche) | ✅ Passé |
+| affiche la grille des 7 jours (lundi → dimanche) | ❌ Échoué |
 | change de semaine avec les boutons précédent/suivant | ❌ Échoué |
 | planifie une sortie facile le lundi | ❌ Échoué |
 
 <details><summary>🚨 Erreurs</summary>
 
+- **affiche la grille des 7 jours (lundi → dimanche)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
 - **change de semaine avec les boutons précédent/suivant** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
 - **planifie une sortie facile le lundi** : `[31mTest timeout of 30000ms exceeded.[39m`
 
@@ -145,4 +146,4 @@
 
 ## 🏁 Statut global
 
-❌ **ÉCHEC** — 5 test(s) en échec sur 55 exécuté(s).
+❌ **ÉCHEC** — 6 test(s) en échec sur 55 exécuté(s).
