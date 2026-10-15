@@ -51,6 +51,33 @@ export interface WeeklyStat {
   avg_min_per_km: number;
 }
 
+/** Types de séance planifiée dans le planning (Sprint 4). */
+export type PlannedType = 'course' | 'force' | 'tennis';
+
+/** Une séance planifiée dans le planning hebdomadaire (Sprint 4). */
+export interface PlannedSession {
+  id: number;
+  week_start: string; // date du lundi de la semaine, 'YYYY-MM-DD'
+  day_of_week: DayOfWeek;
+  planned_type: PlannedType;
+  planned_duration_min: number; // durée prévue en minutes
+  notes?: string;
+}
+
+/** Libellés français des types de séance planifiée. */
+export const PLANNED_TYPE_LABELS: Record<PlannedType, string> = {
+  course: 'Course',
+  force: 'Force',
+  tennis: 'Tennis',
+};
+
+/** Icônes affichées pour chaque type de séance planifiée. */
+export const PLANNED_TYPE_ICONS: Record<PlannedType, string> = {
+  course: '🏃',
+  force: '💪',
+  tennis: '🎾',
+};
+
 /** Libellés français affichés dans l'interface. */
 export const SESSION_TYPE_LABELS: Record<SessionType, string> = {
   easy: 'Sortie facile',
