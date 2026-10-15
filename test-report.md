@@ -8,17 +8,17 @@
 
 | | |
 |---|---|
-| Date | 2026-10-15T13:32:27.408Z |
-| Commit | `local` |
-| Branche | `locale` |
+| Date | 2026-10-15T13:36:03.110Z |
+| Commit | `4bea3c0f5fd9304f2105b17e26314d7a6abe3484` |
+| Branche | `main` |
 
 ## 📈 Résumé
 
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
 | API (Vitest) | 42 | 0 | 0 | 42 |
-| E2E (Playwright) | — | — | — | — |
-| **Total** | **42** | **0** | **0** | **42** |
+| E2E (Playwright) | 13 | 8 | 5 | 0 |
+| **Total** | **55** | **8** | **5** | **42** |
 
 ## 🧪 Tests API (Vitest)
 
@@ -94,8 +94,55 @@
 
 ## 🌐 Tests E2E (Playwright)
 
-> ⚠️ Résultats introuvables (`test-report-e2e.json`). La suite E2E ne s'est pas exécutée ou le rapport n'a pas été produit.
+| Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
+|---:|---:|---:|---:|
+| 13 | 8 | 5 | 0 |
+
+### Détail par fichier de test
+
+**`journal.spec.js`** — 7 test(s) : ✅ 7 · ❌ 0 · ⏭️ 0
+
+| Test | Statut |
+|---|---|
+| affiche le journal au chargement | ✅ Passé |
+| ajoute une séance depuis le formulaire | ✅ Passé |
+| affiche la liste des séances (plus récente d'abord) | ✅ Passé |
+| modifie une séance existante | ✅ Passé |
+| supprime une séance après confirmation | ✅ Passé |
+| refuse une distance invalide avec un message clair | ✅ Passé |
+| navigue entre Journal, Graphiques et Planning | ✅ Passé |
+
+**`planning.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
+
+| Test | Statut |
+|---|---|
+| affiche la grille des 7 jours (lundi → dimanche) | ✅ Passé |
+| change de semaine avec les boutons précédent/suivant | ❌ Échoué |
+| planifie une sortie facile le lundi | ❌ Échoué |
+
+<details><summary>🚨 Erreurs</summary>
+
+- **change de semaine avec les boutons précédent/suivant** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
+- **planifie une sortie facile le lundi** : `[31mTest timeout of 30000ms exceeded.[39m`
+
+</details>
+
+**`progression.spec.js`** — 3 test(s) : ✅ 0 · ❌ 3 · ⏭️ 0
+
+| Test | Statut |
+|---|---|
+| affiche les trois graphiques de progression | ❌ Échoué |
+| dessine les graphiques (balises SVG présentes) | ❌ Échoué |
+| change la période affichée (3 mois) | ❌ Échoué |
+
+<details><summary>🚨 Erreurs</summary>
+
+- **affiche les trois graphiques de progression** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
+- **dessine les graphiques (balises SVG présentes)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
+- **change la période affichée (3 mois)** : `[31mTest timeout of 30000ms exceeded.[39m`
+
+</details>
 
 ## 🏁 Statut global
 
-⏭️ **EN ATTENTE (backend pending)** — 42 test(s) ignoré(s) en attendant le backend (Sprint 5). Aucun échec.
+❌ **ÉCHEC** — 5 test(s) en échec sur 55 exécuté(s).
