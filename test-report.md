@@ -8,8 +8,8 @@
 
 | | |
 |---|---|
-| Date | 2026-10-13T20:08:16.761Z |
-| Commit | `4555036228cf17a35aacc253c31a90b36613670c` |
+| Date | 2026-10-15T13:07:05.738Z |
+| Commit | `2a444c7b4fdf53a4df37b04aa54481b541a34436` |
 | Branche | `main` |
 
 ## 📈 Résumé
@@ -17,8 +17,8 @@
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
 | API (Vitest) | 42 | 0 | 33 | 9 |
-| E2E (Playwright) | 13 | 9 | 4 | 0 |
-| **Total** | **55** | **9** | **37** | **9** |
+| E2E (Playwright) | 13 | 8 | 5 | 0 |
+| **Total** | **55** | **8** | **38** | **9** |
 
 ## 🧪 Tests API (Vitest)
 
@@ -137,7 +137,7 @@
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 13 | 9 | 4 | 0 |
+| 13 | 8 | 5 | 0 |
 
 ### Détail par fichier de test
 
@@ -168,16 +168,17 @@
 
 </details>
 
-**`progression.spec.js`** — 3 test(s) : ✅ 1 · ❌ 2 · ⏭️ 0
+**`progression.spec.js`** — 3 test(s) : ✅ 0 · ❌ 3 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
-| affiche les trois graphiques de progression | ✅ Passé |
+| affiche les trois graphiques de progression | ❌ Échoué |
 | dessine les graphiques (balises SVG présentes) | ❌ Échoué |
 | change la période affichée (3 mois) | ❌ Échoué |
 
 <details><summary>🚨 Erreurs</summary>
 
+- **affiche les trois graphiques de progression** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
 - **dessine les graphiques (balises SVG présentes)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
 - **change la période affichée (3 mois)** : `[31mTest timeout of 30000ms exceeded.[39m`
 
@@ -185,4 +186,4 @@
 
 ## 🏁 Statut global
 
-❌ **ÉCHEC** — 37 test(s) en échec sur 55 exécuté(s).
+❌ **ÉCHEC** — 38 test(s) en échec sur 55 exécuté(s).
