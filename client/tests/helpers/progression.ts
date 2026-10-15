@@ -94,8 +94,8 @@ export async function seedSessions(
 
   // 2. Écrire les séances dans le localStorage du navigateur
   await page.evaluate(
-    ([key, value]: [string, unknown]) => {
-      window.localStorage.setItem(key, JSON.stringify(value));
+    (pair: [string, unknown]) => {
+      window.localStorage.setItem(pair[0], JSON.stringify(pair[1]));
     },
     [STORAGE_KEY, withIds] as [string, unknown],
   );

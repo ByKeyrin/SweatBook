@@ -128,10 +128,13 @@ Les 4 cartes (calculs détaillés en [section 4](#4-calculs)) :
 | ⚡ | Allure moyenne | vitesse moyenne du mois (1 décimale) ou `—` | km/h |
 | ❤️ | FC moyenne | moyenne des `avg_hr` renseignés (arrondie) ou `—` | bpm |
 
-Points clés :
-- Calculs **mémorisés** avec `useMemo` (dépendance `[sessions]`) ; le recours à
-  `new Date()` est commenté dans le code (« impureté » isolée dans le memo).
+- Les calculs sont extraits dans le helper interne **`buildCards(sessions)`**
+ (documenté `@param`/`@returns`), puis **mémorisés** avec `useMemo`
+ (dépendance `[sessions]`) : ils ne sont recalculés que quand les séances
+ changent.
 - Grille responsive : 2 colonnes mobile, 4 colonnes à partir de `lg:`.
+- Chaque carte porte un `data-testid="stat-card"` (contrat des tests E2E,
+ `client/tests/helpers/progression.ts`).
 - Emojis décoratifs en `aria-hidden="true"`.
 
 ### 2.4 ProgressionScreen
@@ -239,7 +242,8 @@ séances du 09/10 au 15/10 inclus sont affichées.
 
 ### 4.3 Cartes de statistiques (mois en cours)
 
-Pour le mois en cours (préfixe `YYYY-MM` comparé à `session.date`) :
+`buildCards()` (dans `StatsCards.tsx`) filtre d'abord les séances du mois en
+cours (préfixe `YYYY-MM` comparé à `session.date`), puis calcule :
 
 | Calcul | Formule | Cas limite |
 |---|---|---|
@@ -351,7 +355,7 @@ et [CONVENTIONS.md §2](./CONVENTIONS.md) :
 | `ProgressionScreen.tsx` | `ProgressionScreen` | ✅ `Composant ProgressionScreen - …` | n/a (aucune prop) | ✅ | ✅ Conforme |
 
 Points forts : helpers internes (`formatDay`, `buildPoints`, `filterLastDays`)
-et tooltips (`DistanceTooltip`, `DurationTooltip`) documentés avec
+et tooltips (`DistanceTooltip`, `DurationTooltip`, `buildCards`) documentés avec
 `@param`/`@returns` ; interfaces et champs documentés un par un ; commentaires
 internes en français expliquant le **pourquoi** (« Dates ISO : on compare
 directement les chaînes ») ; exports nommés uniquement (CONVENTIONS §3) ;
