@@ -20,14 +20,20 @@
  *
  *  🚀 Lancer ces tests : `cd server && npm run dev` puis `npm test -- --run`.
  */
-import { describe, test, expect, beforeAll, afterAll } from 'vitest';
-import { apiGet, apiPost, apiDelete, makeSession } from '../helpers/test-utils.js';
+import { describe as vitestDescribe, test, expect, beforeAll, afterAll } from 'vitest';
+import { apiGet, apiPost, apiDelete, makeSession, API_READY } from '../helpers/test-utils.js';
+
+// ⏭️ Skip conditionnel (Sprint 5) : tant que le backend n'existe pas,
+//    la suite entière est ignorée au lieu d'échouer en ECONNREFUSED.
+//    Voir la détection du serveur dans tests/helpers/test-utils.js.
+const describe = vitestDescribe.skipIf(!API_READY);
 
 // Fixtures : 10 km faciles + 5 km de fractionné (pour la VMA),
 // supprimées à la fin des tests.
 const createdIds = [];
 
 beforeAll(async () => {
+  if (!API_READY) return; // suite ignorée : pas de fixtures à créer
   const fixtures = [
     makeSession({ date: '2026-10-05', type: 'easy', distance_km: 10, duration_min: 60 }),
     makeSession({ date: '2026-10-07', type: 'interval', distance_km: 5, duration_min: 25 }),

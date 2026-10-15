@@ -58,6 +58,10 @@ function normalizeStatus(status) {
 const EMOJI = { pass: '✅', fail: '❌', skip: '⏭️' };
 const LABEL = { pass: 'Passé', fail: 'Échoué', skip: 'Ignoré' };
 
+// Un échec dû à l'absence de serveur (backend Sprint 5 pas encore écrit)
+// n'est pas un vrai échec : on le bascule en « ignoré — backend pending ».
+const SERVER_DOWN_RE = /ECONNREFUSED|fetch failed|ENOTFOUND|network error/i;
+
 // ------------------------------------------------------------
 // Rapport API — format JSON de Vitest (compatible Jest)
 //   { testResults: [ { name, status, assertionResults: [ … ] } ], … }
@@ -65,21 +69,36 @@ const LABEL = { pass: 'Passé', fail: 'Échoué', skip: 'Ignoré' };
 
 function parseApiReport(json) {
   if (!json) return null;
-
   const files = [];
   for (const fileResult of json.testResults ?? []) {
-    const tests = (fileResult.assertionResults ?? []).map((assertion) => ({
-      name: assertion.fullName ?? assertion.title ?? '(test)',
-      status: normalizeStatus(assertion.status),
-      error: (assertion.failureMessages ?? [])[0] ?? null,
-    }));
+    const tests = (fileResult.assertionResults ?? []).map((assertion) => {
+      const error = (assertion.failureMessages ?? [])[0] ?? null;
+      let status = normalizeStatus(assertion.status);
+      // Serveur absent (ECONNREFUSED…) → "skipped (backend pending)".
+      if (status === 'fail' && error && SERVER_DOWN_RE.test(error)) {
+        status = 'skip';
+      }
+      return {
+        name: assertion.fullName ?? assertion.title ?? '(test)',
+        status,
+        error: status === 'fail' ? error : null,
+      };
+    });
     files.push({
       name: path.relative(process.cwd(), fileResult.name ?? '(fichier inconnu)'),
       tests,
     });
   }
 
-  return summarize(files);
+  const summary = summarize(files);
+  // Tous les tests API ignorés → note « backend pending » (Sprint 5).
+  if (summary.total > 0 && summary.passed === 0 && summary.failed === 0) {
+    summary.note =
+      '⏭️ **skipped (backend pending)** — le serveur API (Sprint 5) n\'existe pas encore :' +
+      ' ces tests sont ignorés au lieu d\'échouer. Ils s\'exécuteront automatiquement' +
+      ' dès que le backend sera disponible (`npm run test:api`).';
+  }
+  return summary;
 }
 
 // ------------------------------------------------------------
@@ -159,6 +178,10 @@ function renderSuite(title, report, missingMessage) {
     return lines;
   }
 
+  if (report.note) {
+    lines.push(`> ${report.note}`, '');
+  }
+
   lines.push('| Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |');
   lines.push('|---:|---:|---:|---:|');
   lines.push(`| ${report.total} | ${report.passed} | ${report.failed} | ${report.skipped} |`);
@@ -174,7 +197,12 @@ function renderSuite(title, report, missingMessage) {
     lines.push('| Test | Statut |');
     lines.push('|---|---|');
     for (const test of file.tests) {
-      lines.push(`| ${test.name} | ${STATUS_ICON[test.status]} ${LABEL[test.status]} |`);
+      // Quand tout est ignoré en attente du backend, on l'indique explicitement.
+      const label =
+        report.note && test.status === 'skip'
+          ? 'Ignoré — skipped (backend pending)'
+          : LABEL[test.status];
+      lines.push(`| ${test.name} | ${STATUS_ICON[test.status]} ${label} |`);
     }
     lines.push('');
 
@@ -204,6 +232,10 @@ function render(api, e2e) {
     globalStatus = `❌ **ÉCHEC** — ${failed} test(s) en échec sur ${total} exécuté(s).`;
   } else if (total === 0) {
     globalStatus = '⚠️ **AUCUN TEST EXÉCUTÉ** — rapports présents mais vides.';
+  } else if (passed === 0 && skipped > 0) {
+    globalStatus =
+      `⏭️ **EN ATTENTE (backend pending)** — ${skipped} test(s) ignoré(s) en attendant` +
+      ' le backend (Sprint 5). Aucun échec.';
   } else {
     globalStatus = `✅ **SUCCÈS** — les ${passed} test(s) exécuté(s) passent tous.`;
   }

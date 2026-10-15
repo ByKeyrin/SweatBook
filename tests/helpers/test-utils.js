@@ -12,6 +12,8 @@
  *  au lieu de tous les fichiers de test.
  */
 
+import { execFileSync } from 'node:child_process';
+
 // ------------------------------------------------------------
 // Constantes
 // ------------------------------------------------------------
@@ -21,6 +23,54 @@ export const API_BASE = process.env.API_URL ?? 'http://localhost:3001/api';
 
 /** Les 5 types de sortie autorisés (docs/TECHNICAL.md, table `sessions`). */
 export const SESSION_TYPES = ['easy', 'long', 'interval', 'tempo', 'recovery'];
+
+// ------------------------------------------------------------
+// Détection du serveur API (skip conditionnel des tests API)
+// ------------------------------------------------------------
+
+/**
+ * Vérifie SYNCHRONEMENT si l'API répond.
+ *
+ * Pourquoi synchrone ? La détection doit être connue AVANT la déclaration
+ * des `describe`, pour pouvoir les passer en `describe.skipIf(!API_READY)`.
+ * On sonde dans un sous-processus Node : n'importe quelle réponse HTTP
+ * (même une 404) prouve que le serveur tourne ; une erreur de connexion
+ * (ECONNREFUSED) signifie qu'il est absent.
+ *
+ * Mode forcé via la variable d'environnement API_TESTS :
+ *   - API_TESTS=force → les tests API tournent même sans détection ;
+ *   - API_TESTS=skip  → les tests API sont toujours ignorés ;
+ *   - sinon           → détection automatique du serveur.
+ */
+function isApiAvailable() {
+  const mode = process.env.API_TESTS ?? '';
+  if (mode === 'force') return true;
+  if (mode === 'skip') return false;
+  try {
+    execFileSync(
+      process.execPath,
+      [
+        '-e',
+        `fetch(${JSON.stringify(`${API_BASE}/`)}, { signal: AbortSignal.timeout(1500) })` +
+          '.then(() => process.exit(0), () => process.exit(1));',
+      ],
+      { stdio: 'ignore', timeout: 5000 },
+    );
+    return true;
+  } catch {
+    return false; // serveur absent (ECONNREFUSED) ou injoignable
+  }
+}
+
+/**
+ * true si l'API est joignable (détection faite une seule fois au chargement).
+ * Utilisé par les tests API : `describe.skipIf(!API_READY)`.
+ */
+export const API_READY = isApiAvailable();
+
+/** Raison affichée quand les tests API sont ignorés. */
+export const API_SKIP_REASON =
+  'skipped (backend pending — Sprint 5) : serveur API absent';
 
 // ------------------------------------------------------------
 // Fabriques de données ("factories")

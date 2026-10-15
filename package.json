@@ -8,7 +8,7 @@
     "dev": "concurrently -n server,client -c blue,green \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:api": "vitest run tests/api",
+    "test:api": "API_TESTS=force vitest run tests/api",
     "test:e2e": "playwright test",
     "test:all": "npm test -- --run && npm run test:e2e"
   },

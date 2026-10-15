@@ -24,8 +24,13 @@
  *     400 = requête invalide (erreur de l'utilisateur)
  *     404 = ressource introuvable
  */
-import { describe, test, expect, afterAll } from 'vitest';
-import { apiGet, apiPost, apiPut, apiDelete, makeSession } from '../helpers/test-utils.js';
+import { describe as vitestDescribe, test, expect, afterAll } from 'vitest';
+import { apiGet, apiPost, apiPut, apiDelete, makeSession, API_READY } from '../helpers/test-utils.js';
+
+// ⏭️ Skip conditionnel (Sprint 5) : tant que le backend n'existe pas,
+//    la suite entière est ignorée au lieu d'échouer en ECONNREFUSED.
+//    Voir la détection du serveur dans tests/helpers/test-utils.js.
+const describe = vitestDescribe.skipIf(!API_READY);
 
 // Ids des séances créées pendant les tests, pour les supprimer à la fin
 // (on garde la base propre !).

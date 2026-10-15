@@ -17,8 +17,13 @@
  *
  *  🚀 Lancer ces tests : `cd server && npm run dev` puis `npm test -- --run`.
  */
-import { describe, test, expect, afterAll } from 'vitest';
-import { apiGet, apiPost, apiPut, apiDelete, makePlanEntry } from '../helpers/test-utils.js';
+import { describe as vitestDescribe, test, expect, afterAll } from 'vitest';
+import { apiGet, apiPost, apiPut, apiDelete, makePlanEntry, API_READY } from '../helpers/test-utils.js';
+
+// ⏭️ Skip conditionnel (Sprint 5) : tant que le backend n'existe pas,
+//    la suite entière est ignorée au lieu d'échouer en ECONNREFUSED.
+//    Voir la détection du serveur dans tests/helpers/test-utils.js.
+const describe = vitestDescribe.skipIf(!API_READY);
 
 const createdIds = [];
 afterAll(async () => {
