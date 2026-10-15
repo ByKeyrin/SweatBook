@@ -8,8 +8,8 @@
 
 | | |
 |---|---|
-| Date | 2026-10-15T14:50:39.966Z |
-| Commit | `7b6d57dbe56df9ffe6d0e1b826e756028ec42b2e` |
+| Date | 2026-10-15T15:36:02.553Z |
+| Commit | `7a541d2dbf2d2a2ee6c37569ba70020457ffe223` |
 | Branche | `main` |
 
 ## 📈 Résumé
@@ -17,8 +17,8 @@
 | Suite | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---|---:|---:|---:|---:|
 | API (Vitest) | 42 | 0 | 0 | 42 |
-| E2E (Playwright) | 13 | 7 | 6 | 0 |
-| **Total** | **55** | **7** | **6** | **42** |
+| E2E (Playwright) | 13 | 13 | 0 | 0 |
+| **Total** | **55** | **13** | **0** | **42** |
 
 ## 🧪 Tests API (Vitest)
 
@@ -96,7 +96,7 @@
 
 | Total | ✅ Passés | ❌ Échoués | ⏭️ Ignorés |
 |---:|---:|---:|---:|
-| 13 | 7 | 6 | 0 |
+| 13 | 13 | 0 | 0 |
 
 ### Détail par fichier de test
 
@@ -112,38 +112,22 @@
 | refuse une distance invalide avec un message clair | ✅ Passé |
 | navigue entre Journal, Graphiques et Planning | ✅ Passé |
 
-**`planning.spec.js`** — 3 test(s) : ✅ 0 · ❌ 3 · ⏭️ 0
+**`planning.spec.js`** — 3 test(s) : ✅ 3 · ❌ 0 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
-| affiche la grille des 7 jours (lundi → dimanche) | ❌ Échoué |
-| change de semaine avec les boutons précédent/suivant | ❌ Échoué |
-| planifie une sortie facile le lundi | ❌ Échoué |
+| affiche la grille des 7 jours (lundi → dimanche) | ✅ Passé |
+| change de semaine avec les boutons précédent/suivant | ✅ Passé |
+| planifie une course le lundi | ✅ Passé |
 
-<details><summary>🚨 Erreurs</summary>
-
-- **affiche la grille des 7 jours (lundi → dimanche)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
-- **change de semaine avec les boutons précédent/suivant** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
-- **planifie une sortie facile le lundi** : `[31mTest timeout of 30000ms exceeded.[39m`
-
-</details>
-
-**`progression.spec.js`** — 3 test(s) : ✅ 0 · ❌ 3 · ⏭️ 0
+**`progression.spec.js`** — 3 test(s) : ✅ 3 · ❌ 0 · ⏭️ 0
 
 | Test | Statut |
 |---|---|
-| affiche les trois graphiques de progression | ❌ Échoué |
-| dessine les graphiques (balises SVG présentes) | ❌ Échoué |
-| change la période affichée (3 mois) | ❌ Échoué |
-
-<details><summary>🚨 Erreurs</summary>
-
-- **affiche les trois graphiques de progression** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
-- **dessine les graphiques (balises SVG présentes)** : `Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed`
-- **change la période affichée (3 mois)** : `[31mTest timeout of 30000ms exceeded.[39m`
-
-</details>
+| affiche les graphiques de progression | ✅ Passé |
+| dessine les graphiques (balises SVG présentes) | ✅ Passé |
+| change la période affichée (90 jours) | ✅ Passé |
 
 ## 🏁 Statut global
 
-❌ **ÉCHEC** — 6 test(s) en échec sur 55 exécuté(s).
+✅ **SUCCÈS** — les 13 test(s) exécuté(s) passent tous.
