@@ -97,7 +97,7 @@ export function SessionCard({ session, onEdit, onDelete }: SessionCardProps) {
   return (
     <article
       data-testid="session-card"
-      className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-start sm:justify-between"
+      className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-start sm:justify-between dark:border-slate-700 dark:bg-slate-800"
     >
       {/* ---------- Informations principales ---------- */}
       <div className="flex items-start gap-3">
@@ -105,19 +105,19 @@ export function SessionCard({ session, onEdit, onDelete }: SessionCardProps) {
           {TYPE_ICONS[session.type]}
         </span>
         <div className="min-w-0">
-          <h3 className="text-base font-semibold text-slate-800">
+          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-100">
             <time dateTime={session.date}>{formatDate(session.date)}</time>
             {' · '}
             {SESSION_TYPE_LABELS[session.type]}
           </h3>
 
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             {formatDistance(session.distance_km)} · {formatDuration(session.duration_min)} ·{' '}
             {formatPace(session.duration_min, session.distance_km)}
           </p>
 
           {(session.avg_hr !== undefined || session.feeling !== undefined) && (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               {session.avg_hr !== undefined && <>FC {session.avg_hr} bpm</>}
               {session.avg_hr !== undefined && session.feeling !== undefined && ' · '}
               {session.feeling !== undefined && <>Ressenti {session.feeling}/5</>}
@@ -125,7 +125,7 @@ export function SessionCard({ session, onEdit, onDelete }: SessionCardProps) {
           )}
 
           {session.notes && (
-            <p className="mt-2 rounded-lg bg-slate-50 p-2 text-sm break-words text-slate-600">
+            <p className="mt-2 rounded-lg bg-slate-50 p-2 text-sm break-words text-slate-600 dark:bg-slate-900 dark:text-slate-300">
               {session.notes}
             </p>
           )}
@@ -138,7 +138,7 @@ export function SessionCard({ session, onEdit, onDelete }: SessionCardProps) {
           <button
             type="button"
             onClick={() => onEdit(session)}
-            className="rounded-xl border border-blue-200 px-3 py-1.5 text-sm font-medium text-blue-700 transition hover:bg-blue-50 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="rounded-xl border border-blue-200 px-3 py-1.5 text-sm font-medium text-blue-700 transition hover:bg-blue-50 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950/50 dark:focus:ring-blue-900"
           >
             Modifier
           </button>
@@ -147,7 +147,7 @@ export function SessionCard({ session, onEdit, onDelete }: SessionCardProps) {
           <button
             type="button"
             onClick={handleDelete}
-            className="rounded-xl border border-red-200 px-3 py-1.5 text-sm font-medium text-red-700 transition hover:bg-red-50 focus:ring-2 focus:ring-red-200 focus:outline-none"
+            className="rounded-xl border border-red-200 px-3 py-1.5 text-sm font-medium text-red-700 transition hover:bg-red-50 focus:ring-2 focus:ring-red-200 focus:outline-none dark:border-red-800 dark:text-red-300 dark:hover:bg-red-950/50 dark:focus:ring-red-900"
           >
             Supprimer
           </button>

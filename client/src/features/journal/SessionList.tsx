@@ -38,10 +38,10 @@ export function SessionList({ sessions, onCreate, onEdit, onDelete }: SessionLis
     <section className="flex flex-col gap-4">
       {/* ---------- En-tête + bouton d'ajout ---------- */}
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold text-slate-800">
+        <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
           Mes séances
           {sessions.length > 0 && (
-            <span className="ml-2 text-sm font-normal text-slate-500">
+            <span className="ml-2 text-sm font-normal text-slate-500 dark:text-slate-400">
               ({sessions.length})
             </span>
           )}
@@ -61,14 +61,14 @@ export function SessionList({ sessions, onCreate, onEdit, onDelete }: SessionLis
 
       {/* ---------- État vide ---------- */}
       {sorted.length === 0 ? (
-        <div className="flex flex-col items-start gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <span className="text-4xl" aria-hidden="true">
             🗒️
           </span>
-          <h3 className="text-xl font-semibold text-slate-800">
+          <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
             Aucune séance pour l'instant
           </h3>
-          <p className="text-sm leading-relaxed text-slate-600">
+          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
             Ajoute ta première sortie pour commencer à suivre tes progrès !
           </p>
           <button

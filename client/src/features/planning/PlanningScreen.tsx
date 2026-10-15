@@ -44,7 +44,7 @@ export function PlanningScreen() {
     <div className="flex flex-col gap-4">
       {/* ---------- Navigation entre les semaines ---------- */}
       <Card title="🗓️ Planning de la semaine">
-        <p className="mb-4 text-sm leading-relaxed text-slate-600">
+        <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
           Prépare ta semaine : pour chaque jour, choisis un type de séance et une
           durée prévue… ou laisse « Repos ».
         </p>

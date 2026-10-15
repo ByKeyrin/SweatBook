@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { JournalScreen } from './features/journal/JournalScreen'
 import { ProgressionScreen } from './features/progression/ProgressionScreen'
 import { PlanningScreen } from './features/planning/PlanningScreen'
+import { ThemeToggle } from './components/ui/ThemeToggle'
 
 /*
  * App — composant racine de SweatBook (client/src/App.tsx).
@@ -38,17 +39,21 @@ export default function App() {
   return (
     <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 pb-12">
       {/* ---------- En-tête ---------- */}
-      <header className="py-6 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+      <header className="relative py-6 text-center">
+        {/* Bouton mode clair / sombre, en haut à droite */}
+        <div className="absolute right-0 top-6">
+          <ThemeToggle />
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
           💦 SweatBook
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           Ton carnet d'entraînement running
         </p>
       </header>
 
       {/* ---------- Navigation ---------- */}
-      <nav className="sticky top-0 z-10 -mx-4 mb-6 border-b border-slate-200 bg-white/90 px-4 py-2 backdrop-blur">
+      <nav className="sticky top-0 z-10 -mx-4 mb-6 border-b border-slate-200 bg-white/90 px-4 py-2 backdrop-blur dark:border-slate-700 dark:bg-slate-900/90">
         {/* Flex : les onglets se rangent sur une ligne, scrollable sur mobile */}
         <ul className="flex justify-center gap-1 overflow-x-auto">
           {TABS.map((t) => {
@@ -66,7 +71,7 @@ export default function App() {
                   className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition ${
                     isActive
                       ? 'bg-blue-600 text-white shadow-sm'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
                   }`}
                 >
                   <span aria-hidden="true">{t.icon}</span>
@@ -86,7 +91,7 @@ export default function App() {
       </main>
 
       {/* ---------- Pied de page ---------- */}
-      <footer className="mt-10 text-center text-xs text-slate-400">
+      <footer className="mt-10 text-center text-xs text-slate-400 dark:text-slate-500">
         SweatBook — Sprint 3 · Fait avec React + Vite + Tailwind 💪
       </footer>
     </div>

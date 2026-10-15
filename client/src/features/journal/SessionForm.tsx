@@ -167,7 +167,7 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       {/* ---------- Date ---------- */}
       <div>
-        <label htmlFor="session-date" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="session-date" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Date <span className="text-red-500">*</span>
         </label>
         <input
@@ -176,21 +176,21 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
           value={values.date}
           max={todayIso()}
           onChange={(e) => handleChange('date', e.target.value)}
-          className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
         />
-        {errors.date && <p role="alert" className="mt-1 text-sm text-red-600">{errors.date}</p>}
+        {errors.date && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.date}</p>}
       </div>
 
       {/* ---------- Type ---------- */}
       <div>
-        <label htmlFor="session-type" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="session-type" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Type de sortie <span className="text-red-500">*</span>
         </label>
         <select
           id="session-type"
           value={values.type}
           onChange={(e) => handleChange('type', e.target.value)}
-          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
         >
           <option value="">— Choisir un type —</option>
           {(Object.keys(SESSION_TYPE_LABELS) as SessionType[]).map((type) => (
@@ -199,13 +199,13 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
             </option>
           ))}
         </select>
-        {errors.type && <p role="alert" className="mt-1 text-sm text-red-600">{errors.type}</p>}
+        {errors.type && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.type}</p>}
       </div>
 
       {/* ---------- Distance & durée (côte à côte sur mobile) ---------- */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="session-distance" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="session-distance" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Distance (km) <span className="text-red-500">*</span>
           </label>
           <input
@@ -217,13 +217,13 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
             placeholder="15,5"
             value={values.distance_km}
             onChange={(e) => handleChange('distance_km', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           />
-          {errors.distance_km && <p role="alert" className="mt-1 text-sm text-red-600">{errors.distance_km}</p>}
+          {errors.distance_km && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.distance_km}</p>}
         </div>
 
         <div>
-          <label htmlFor="session-duration" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="session-duration" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Durée (min) <span className="text-red-500">*</span>
           </label>
           <input
@@ -235,16 +235,16 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
             placeholder="82,5"
             value={values.duration_min}
             onChange={(e) => handleChange('duration_min', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           />
-          {errors.duration_min && <p role="alert" className="mt-1 text-sm text-red-600">{errors.duration_min}</p>}
+          {errors.duration_min && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.duration_min}</p>}
         </div>
       </div>
 
       {/* ---------- FC & ressenti (facultatifs) ---------- */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="session-hr" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="session-hr" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Fréquence cardiaque moyenne (bpm)
           </label>
           <input
@@ -257,13 +257,13 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
             placeholder="145"
             value={values.avg_hr}
             onChange={(e) => handleChange('avg_hr', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           />
-          {errors.avg_hr && <p role="alert" className="mt-1 text-sm text-red-600">{errors.avg_hr}</p>}
+          {errors.avg_hr && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.avg_hr}</p>}
         </div>
 
         <div>
-          <label htmlFor="session-feeling" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="session-feeling" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Ressenti (1-5)
           </label>
           <input
@@ -276,15 +276,15 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
             placeholder="4"
             value={values.feeling}
             onChange={(e) => handleChange('feeling', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           />
-          {errors.feeling && <p role="alert" className="mt-1 text-sm text-red-600">{errors.feeling}</p>}
+          {errors.feeling && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.feeling}</p>}
         </div>
       </div>
 
       {/* ---------- Notes ---------- */}
       <div>
-        <label htmlFor="session-notes" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="session-notes" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Notes
         </label>
         <textarea
@@ -294,10 +294,10 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
           placeholder="Météo, parcours, douleurs…"
           value={values.notes}
           onChange={(e) => handleChange('notes', e.target.value)}
-          className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
         />
-        <p className="mt-1 text-xs text-slate-400">{values.notes.length}/500 caractères</p>
-        {errors.notes && <p role="alert" className="mt-1 text-sm text-red-600">{errors.notes}</p>}
+        <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{values.notes.length}/500 caractères</p>
+        {errors.notes && <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.notes}</p>}
       </div>
 
       {/* ---------- Actions ---------- */}
@@ -311,7 +311,7 @@ export function SessionForm({ initial, onSubmit, onCancel }: SessionFormProps) {
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95"
+          className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:focus:ring-slate-800"
         >
           Annuler
         </button>

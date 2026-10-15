@@ -37,7 +37,7 @@ export function JournalScreen() {
   }
 
   const pageTitle = (
-    <h2 className="text-xl font-semibold text-slate-800">
+    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
       📓 Journal des séances
     </h2>
   )

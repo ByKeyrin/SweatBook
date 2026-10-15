@@ -51,20 +51,20 @@ export interface DayCardProps {
  */
 export function DayCard({ dayOfWeek, date, plans, onAdd, onDelete }: DayCardProps) {
   return (
-    <div className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+    <div className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-800">
       {/* ---------- En-tête : nom du jour + date ---------- */}
       <div className="flex items-baseline justify-between">
-        <p className="text-sm font-semibold text-slate-800">
+        <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">
           {DAY_SHORT_LABELS[dayOfWeek]}
         </p>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           {format(date, 'd MMM', { locale: fr })}
         </p>
       </div>
 
       {/* ---------- Séances planifiées ---------- */}
       {plans.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-2 text-center text-xs text-slate-400">
+        <p className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-2 text-center text-xs text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-500">
           Repos
         </p>
       ) : (
@@ -72,10 +72,10 @@ export function DayCard({ dayOfWeek, date, plans, onAdd, onDelete }: DayCardProp
           {plans.map((plan) => (
             <li
               key={plan.id}
-              className="group rounded-xl border border-slate-200 bg-slate-50 p-2"
+              className="group rounded-xl border border-slate-200 bg-slate-50 p-2 dark:border-slate-700 dark:bg-slate-900"
             >
               <div className="flex items-start justify-between gap-1">
-                <p className="text-xs font-semibold text-slate-700">
+                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">
                   <span aria-hidden="true">{PLANNED_TYPE_ICONS[plan.planned_type]}</span>{' '}
                   {PLANNED_TYPE_LABELS[plan.planned_type]}
                 </p>
@@ -83,14 +83,14 @@ export function DayCard({ dayOfWeek, date, plans, onAdd, onDelete }: DayCardProp
                   type="button"
                   onClick={() => onDelete(plan.id)}
                   aria-label={`Supprimer la séance ${PLANNED_TYPE_LABELS[plan.planned_type]}`}
-                  className="rounded-md px-1.5 text-xs text-slate-400 transition hover:bg-slate-200 hover:text-red-600"
+                  className="rounded-md px-1.5 text-xs text-slate-400 transition hover:bg-slate-200 hover:text-red-600 dark:hover:bg-slate-700 dark:hover:text-red-400"
                 >
                   ✕
                 </button>
               </div>
-              <p className="text-xs text-slate-500">{plan.planned_duration_min} min</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{plan.planned_duration_min} min</p>
               {plan.notes && (
-                <p className="mt-1 text-xs break-words text-slate-500 italic">
+                <p className="mt-1 text-xs break-words text-slate-500 italic dark:text-slate-400">
                   {plan.notes}
                 </p>
               )}
@@ -103,7 +103,7 @@ export function DayCard({ dayOfWeek, date, plans, onAdd, onDelete }: DayCardProp
       <button
         type="button"
         onClick={() => onAdd(dayOfWeek)}
-        className="mt-auto rounded-xl border border-dashed border-blue-300 px-2 py-1.5 text-xs font-semibold text-blue-600 transition hover:bg-blue-50 focus:ring-2 focus:ring-blue-200 focus:outline-none active:scale-95"
+        className="mt-auto rounded-xl border border-dashed border-blue-300 px-2 py-1.5 text-xs font-semibold text-blue-600 transition hover:bg-blue-50 focus:ring-2 focus:ring-blue-200 focus:outline-none active:scale-95 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-950/50 dark:focus:ring-blue-900"
       >
         + Ajouter
       </button>

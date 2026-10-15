@@ -5,6 +5,13 @@
  */
 @import 'tailwindcss';
 
+/*
+ * Mode sombre — stratégie « class » (Tailwind v4) :
+ * les utilitaires `dark:` s'activent quand la balise <html> porte
+ * la classe « dark » (ajoutée par le hook useTheme).
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Style de base appliqué à toute la page */
 body {
   margin: 0;
@@ -12,4 +19,24 @@ body {
   color: #0f172a; /* slate-900 */
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Même base, en mode sombre */
+.dark body {
+  background-color: #0f172a; /* slate-900 */
+  color: #e2e8f0; /* slate-200 */
+}
+
+/*
+ * Couleurs des graphiques Recharts (axes, grille) sous forme de
+ * variables CSS : elles basculent automatiquement en mode sombre.
+ */
+:root {
+  --chart-grid: #e2e8f0; /* slate-200 */
+  --chart-tick: #475569; /* slate-600 */
+}
+
+.dark {
+  --chart-grid: #334155; /* slate-700 */
+  --chart-tick: #94a3b8; /* slate-400 */
 }

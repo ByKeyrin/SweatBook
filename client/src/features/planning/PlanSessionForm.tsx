@@ -148,14 +148,14 @@ export function PlanSessionForm({ weekStart, defaultDay = 0, onSubmit }: PlanSes
       {/* ---------- Jour & type (côte à côte sur mobile) ---------- */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="plan-day" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="plan-day" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Jour <span className="text-red-500">*</span>
           </label>
           <select
             id="plan-day"
             value={values.day_of_week}
             onChange={(e) => handleChange('day_of_week', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           >
             {DAY_LABELS.map((label, index) => (
               <option key={label} value={index}>
@@ -165,19 +165,19 @@ export function PlanSessionForm({ weekStart, defaultDay = 0, onSubmit }: PlanSes
             ))}
           </select>
           {errors.day_of_week && (
-            <p role="alert" className="mt-1 text-sm text-red-600">{errors.day_of_week}</p>
+            <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.day_of_week}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="plan-type" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="plan-type" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
             Type <span className="text-red-500">*</span>
           </label>
           <select
             id="plan-type"
             value={values.planned_type}
             onChange={(e) => handleChange('planned_type', e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
           >
             <option value="">— Choisir —</option>
             {(Object.keys(PLANNED_TYPE_LABELS) as PlannedType[]).map((type) => (
@@ -187,14 +187,14 @@ export function PlanSessionForm({ weekStart, defaultDay = 0, onSubmit }: PlanSes
             ))}
           </select>
           {errors.planned_type && (
-            <p role="alert" className="mt-1 text-sm text-red-600">{errors.planned_type}</p>
+            <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.planned_type}</p>
           )}
         </div>
       </div>
 
       {/* ---------- Durée prévue ---------- */}
       <div>
-        <label htmlFor="plan-duration" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="plan-duration" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Durée prévue (min) <span className="text-red-500">*</span>
         </label>
         <input
@@ -207,16 +207,16 @@ export function PlanSessionForm({ weekStart, defaultDay = 0, onSubmit }: PlanSes
           placeholder="45"
           value={values.planned_duration_min}
           onChange={(e) => handleChange('planned_duration_min', e.target.value)}
-          className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
         />
         {errors.planned_duration_min && (
-          <p role="alert" className="mt-1 text-sm text-red-600">{errors.planned_duration_min}</p>
+          <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.planned_duration_min}</p>
         )}
       </div>
 
       {/* ---------- Notes ---------- */}
       <div>
-        <label htmlFor="plan-notes" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="plan-notes" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Notes
         </label>
         <textarea
@@ -226,11 +226,11 @@ export function PlanSessionForm({ weekStart, defaultDay = 0, onSubmit }: PlanSes
           placeholder="Objectif, parcours prévu, intensité…"
           value={values.notes}
           onChange={(e) => handleChange('notes', e.target.value)}
-          className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+          className="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-blue-900"
         />
-        <p className="mt-1 text-xs text-slate-400">{values.notes.length}/500 caractères</p>
+        <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{values.notes.length}/500 caractères</p>
         {errors.notes && (
-          <p role="alert" className="mt-1 text-sm text-red-600">{errors.notes}</p>
+          <p role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.notes}</p>
         )}
       </div>
 

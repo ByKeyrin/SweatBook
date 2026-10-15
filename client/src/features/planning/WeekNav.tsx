@@ -56,19 +56,19 @@ export function WeekNav({ weekStart, onPrevious, onNext, onToday }: WeekNavProps
       <button
         type="button"
         onClick={onPrevious}
-        className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95"
+        className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:focus:ring-slate-800"
       >
         ◀ Précédente
       </button>
 
       <div className="flex flex-col items-center gap-1">
-        <p className="text-center text-sm font-semibold text-slate-800 sm:text-base">
+        <p className="text-center text-sm font-semibold text-slate-800 sm:text-base dark:text-slate-100">
           {formatWeekLabel(weekStart)}
         </p>
         <button
           type="button"
           onClick={onToday}
-          className="text-xs font-medium text-blue-600 transition hover:text-blue-700 hover:underline"
+          className="text-xs font-medium text-blue-600 transition hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
         >
           Revenir à la semaine en cours
         </button>
@@ -77,7 +77,7 @@ export function WeekNav({ weekStart, onPrevious, onNext, onToday }: WeekNavProps
       <button
         type="button"
         onClick={onNext}
-        className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95"
+        className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 focus:ring-2 focus:ring-slate-200 focus:outline-none active:scale-95 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:focus:ring-slate-800"
       >
         Suivante ▶
       </button>

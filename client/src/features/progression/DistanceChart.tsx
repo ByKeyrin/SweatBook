@@ -88,12 +88,12 @@ function DistanceTooltip({ active, payload }: DistanceTooltipProps) {
   if (!active || !point) return null
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-md">
-      <p className="text-sm font-semibold text-slate-800">{point.label}</p>
-      <p className="text-sm text-slate-600">
+    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-md dark:border-slate-700 dark:bg-slate-800">
+      <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">{point.label}</p>
+      <p className="text-sm text-slate-600 dark:text-slate-300">
         Distance : <strong>{point.distance.toFixed(1)} km</strong>
       </p>
-      <p className="text-sm text-slate-600">
+      <p className="text-sm text-slate-600 dark:text-slate-300">
         {point.sessionCount} séance{point.sessionCount > 1 ? 's' : ''}
       </p>
     </div>
@@ -110,22 +110,22 @@ export function DistanceChart({ sessions, days }: DistanceChartProps) {
 
   return (
     <div>
-      <h2 className="mb-3 text-lg font-semibold text-slate-800">
+      <h2 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">
         📈 Distance — {days} derniers jours
       </h2>
       {points.length === 0 ? (
-        <p className="py-8 text-center text-sm text-slate-500">
+        <p className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
           Aucune séance sur cette période.
         </p>
       ) : (
         <div className="h-64" role="img" aria-label="Graphique de la distance par jour">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={points} margin={{ top: 8, right: 16, bottom: 8, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#475569' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+              <XAxis dataKey="label" tick={{ fontSize: 12, fill: 'var(--chart-tick)' }} />
               <YAxis
                 unit=" km"
-                tick={{ fontSize: 12, fill: '#475569' }}
+                tick={{ fontSize: 12, fill: 'var(--chart-tick)' }}
                 width={70}
               />
               <Tooltip content={<DistanceTooltip />} />

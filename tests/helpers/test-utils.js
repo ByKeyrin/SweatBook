@@ -97,6 +97,20 @@ export function makeSession(overrides = {}) {
 }
 
 /**
+ * Retourne la date d'il y a `n` jours au format ISO (AAAA-MM-JJ).
+ *
+ * 💡 Pourquoi calculer la date plutôt qu'en coder une en dur ?
+ * Une date fixe finirait par se retrouver « dans le futur » si les tests
+ * tournent plus tard, et les graphiques de progression ne l'afficheraient
+ * plus dans leur période (7 / 30 / 90 jours).
+ */
+export function daysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10); // AAAA-MM-JJ
+}
+
+/**
  * Crée un objet entrée de planning valide (docs/TECHNICAL.md, table `plan_entries`).
  * On peut surcharger un champ : makePlanEntry({ day_of_week: 2 })
  */
@@ -188,6 +202,38 @@ export async function navigateTo(page, destination) {
     planning: /planning/i,
   };
   await page.getByRole('link', { name: linkNames[destination] }).first().click();
+}
+
+/**
+ * Injecte des séances de test dans le localStorage (`sweatbook.sessions`),
+ * puis recharge la page pour que l'app les lise au démarrage.
+ *
+ * 📚 Pourquoi ? Les graphiques de progression (features/progression/) sont
+ * vides sans données : pour vérifier qu'ils se DESSINENT (balises SVG),
+ * il faut d'abord des séances. Écrire directement dans le localStorage est
+ * plus rapide que de remplir le formulaire du Journal pour chaque séance.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {ReturnType<typeof makeSession>[]} [sessions] - défaut : 2 séances récentes
+ */
+export async function seedSessions(page, sessions) {
+  const data =
+    sessions ?? [
+      makeSession({ date: daysAgo(2), distance_km: 10, duration_min: 55 }),
+      makeSession({ date: daysAgo(5), distance_km: 12, duration_min: 65 }),
+    ];
+  // Chaque séance reçoit un id unique, comme le ferait l'application
+  const withIds = data.map((s, i) => ({ id: i + 1, ...s }));
+
+  // 1. Ouvrir l'app d'abord : le localStorage est lié à l'origine (localhost)
+  await page.goto('/');
+  // 2. Écrire les séances dans le localStorage du navigateur
+  await page.evaluate(
+    (pair) => window.localStorage.setItem(pair[0], JSON.stringify(pair[1])),
+    ['sweatbook.sessions', withIds],
+  );
+  // 3. Recharger : React relit le localStorage au premier rendu
+  await page.reload();
 }
 
 /**

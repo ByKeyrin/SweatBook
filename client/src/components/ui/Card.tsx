@@ -14,9 +14,9 @@ export function Card({
   children: ReactNode
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 dark:border-slate-700 dark:bg-slate-800">
       {title && (
-        <h2 className="mb-3 text-lg font-semibold text-slate-800">{title}</h2>
+        <h2 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">{title}</h2>
       )}
       {children}
     </div>

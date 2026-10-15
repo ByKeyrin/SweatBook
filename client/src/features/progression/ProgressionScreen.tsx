@@ -58,7 +58,7 @@ export function ProgressionScreen() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-xl font-semibold text-slate-800">📈 Progression</h2>
+      <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">📈 Progression</h2>
 
       {/* ---------- Cartes de statistiques ---------- */}
       <StatsCards sessions={sessions} />
@@ -74,7 +74,7 @@ export function ProgressionScreen() {
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
               periodDays === days
                 ? 'border-blue-600 bg-blue-600 text-white'
-                : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
+                : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             {days} jours

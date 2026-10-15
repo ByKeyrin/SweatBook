@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SweatBook — Carnet d'entraînement running</title>
+    <!-- Applique le thème mémorisé avant le premier rendu (évite un flash blanc). -->
+    <script>
+      try {
+        if (localStorage.getItem('sweatbook_theme') === 'dark') {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (e) {
+        /* localStorage indisponible : thème clair par défaut */
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

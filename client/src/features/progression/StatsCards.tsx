@@ -100,16 +100,16 @@ export function StatsCards({ sessions }: StatsCardsProps) {
         <div
           key={card.title}
           data-testid="stat-card"
-          className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+          className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800"
         >
           <div className="flex items-center gap-2">
             <span className="text-2xl" aria-hidden="true">
               {card.emoji}
             </span>
-            <h3 className="text-sm font-medium text-slate-600">{card.title}</h3>
+            <h3 className="text-sm font-medium text-slate-600 dark:text-slate-300">{card.title}</h3>
           </div>
           <p className={`mt-2 text-2xl font-bold ${card.accent}`}>{card.value}</p>
-          <p className="text-xs text-slate-500">{card.unit}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{card.unit}</p>
         </div>
       ))}
     </div>
